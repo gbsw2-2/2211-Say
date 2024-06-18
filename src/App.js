@@ -1,27 +1,26 @@
 import { useState } from 'react';
-import Controller from './SayController';
+import SayController from './SayController';
 import Viewer from './SayViewer';
+import SayColor from './SayColor';
 
 function App() {
-  const [ message, setMessage ] = useState('')
+  const [ message, setMessage ] = useState('');
+  const [color, setColor] = useState('black');
 
   const handleSetMessage = (value) => {
-    setMessage(value)
+    setMessage(value);
   }
+  const ColorHandler = (color) => {
+    setColor(color);
+  };
 
   return (
     <div>
-      <Controller handleSetMessage={ handleSetMessage } />
-      {/* <div>
-        <button onClick={ () => handleSetMessage('안녕하세요!') }>입장</button>
-        <button onClick={ () => handleSetMessage('안녕히 가세요!') }>퇴장</button>
-      </div> */}
-      <Viewer message={ message } />
-      {/* <div>
-        <h1>{message}</h1>
-      </div> */}
+      <SayController handleSetMessage={ handleSetMessage } />
+      <Viewer message={ message } color={color}/>
+      <SayColor ColorHandler = {ColorHandler} />
     </div>
-  );
-}
 
+  );  
+}
 export default App;
